@@ -136,7 +136,7 @@ weather_df %>%
 
 This is a dataframe! 
 
-```{r eval=FALSE}
+```{r}
 weather_df %>% 
   group_by(name, month) %>% 
   summarize(
@@ -148,9 +148,7 @@ weather_df %>%
   geom_point() +
   geom_line()
 
-# this code gives me the following error:
-#Error: Theme element `legend_position` is not defined in the element hierarchy.
-
+#why isn't this in viridis?
 ```
 
 Suppose you want to summarize many columns.
@@ -185,5 +183,30 @@ weather_df %>%
   ) %>% 
   ggplot(aes(x = date, y = centered_tmax, color = name)) +
   geom_point()
+
+#why isn't this in viridis?
+
+```
+
+what about window functions?
+
+ranking
+
+```{r}
+weather_df %>% 
+  group_by(name, month) %>% 
+  mutate(temp_rank = min_rank(desc(tmax)))
+```
+
+lag
+
+```{r}
+weather_df %>% 
+  group_by(name) %>% 
+  mutate(temp_change = tmax - lag(tmax)) %>% 
+  summarize(
+    temp_change_max = max(temp_change, na.rm = TRUE),
+    temp_change_sd = sd(temp_change, na.rm = TRUE)
+  )
 ```
 
