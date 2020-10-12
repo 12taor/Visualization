@@ -154,18 +154,18 @@ knitr::opts_chunk$set(
   out.width = "90%"
 )
 
-theme_set(theme_minimal() + theme(legend_position = "bottom"))
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
 
 options(
   ggplot2.continuous.colour = "viridis",
   ggplot2.continuous.fill = "viridis"
 )
 
-scale_color_discrete = scale_color_viridis_d
+scale_colour_discrete = scale_colour_viridis_d
 scale_fill_discrete = scale_fill_viridis_d
 ```
 
-## Data args in 'geom;
+## Data args in 'geom'
 
 ```{r}
 central_park <- 
@@ -184,7 +184,7 @@ ggplot(data = waikiki, aes(x = date, y = tmax, color = name)) +
 
 ## 'patchwork'
 
-Remember facetiing?
+Remember faceting?
 
 ```{r}
 weather_df %>% 
